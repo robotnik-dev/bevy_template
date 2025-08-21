@@ -6,9 +6,9 @@ on:
       - "*"
 
 env:
-  binary: bevy_template
+  binary: ${{ vars.GAMENAME }}
   add_binaries_to_github_release: true
-  #itch_target: <itch.io-username>/<game-name>
+  # itch_target: robotnik-games/${{ vars.GAMENAME }}
   use_git_lfs: false
 
 jobs:
@@ -54,7 +54,7 @@ jobs:
         if: ${{ env.add_binaries_to_github_release == 'true' }}
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.PAT}}
           file: ${{ env.binary }}.zip
           asset_name: ${{ env.binary }}-wasm-${{ steps.get_version.outputs.tag }}.zip
           tag: ${{ github.ref }}
@@ -103,7 +103,7 @@ jobs:
         if: ${{ env.add_binaries_to_github_release == 'true' }}
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.PAT}}
           file: ${{ env.binary }}.zip
           asset_name: ${{ env.binary }}-linux-${{ steps.get_version.outputs.tag }}.zip
           tag: ${{ github.ref }}
@@ -149,7 +149,7 @@ jobs:
         if: ${{ env.add_binaries_to_github_release == 'true' }}
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.PAT }}
           file: ${{ env.binary }}.zip
           asset_name: ${{ env.binary }}-windows-${{ steps.get_version.outputs.tag }}.zip
           tag: ${{ github.ref }}
@@ -195,7 +195,7 @@ jobs:
         if: ${{ env.add_binaries_to_github_release == 'true' }}
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.PAT }}
           file: ${{ env.binary }}-macOS-intel.dmg
           asset_name: ${{ env.binary }}-macOS-intel-${{ steps.get_version.outputs.tag }}.dmg
           tag: ${{ github.ref }}
@@ -241,7 +241,7 @@ jobs:
         if: ${{ env.add_binaries_to_github_release == 'true' }}
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.PAT }}
           file: ${{ env.binary }}-macOS-apple-silicon.dmg
           asset_name: ${{ env.binary }}-macOS-apple-silicon-${{ steps.get_version.outputs.tag }}.dmg
           tag: ${{ github.ref }}
